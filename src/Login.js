@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from 'react-router-dom'; 
-import "./App.css";
+import "./App.scss";
 
 function App() {
   // React States

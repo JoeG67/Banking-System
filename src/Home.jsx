@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from 'react-router-dom'; // Import Link for navigation
-import "./App.css";
+import "./App.scss";
 
 const handleLogout = () => {
   // Perform logout logic (e.g., clearing authentication tokens)
