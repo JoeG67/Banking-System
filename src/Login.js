@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import "./App.scss";
 
 function App() {
-  // React States
+  // React States(Ensures that stuff like the email, password and error messages can be validated)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -23,15 +23,15 @@ function App() {
 
 
   const handleLogin = () => {
-    // Simple form validation (replace with your validation logic)
+    // Simple form validation (replace with validation logic)
     if (email === '' || password === '') {
       setErrorMessage(alert('Username and password must be filled. Please try again.'));
     } else {
-      // Simulate a login request (replace with your authentication logic)
+      // Simulate a login request (replace with  authentication logic)
       if (email === 'username' && password === 'password') {
         navigate("/Home"); // Redirect to the Home page
-        // Redirect to another page or perform further actions here
-      } else {
+
+      } else {  // Redirect to another page or perform further actions here(either 404 or error popup)
         setErrorMessage(alert('Invalid email or password.'));
       }
     }
