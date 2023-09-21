@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
 import ReactDOM from "react-dom";
 import { useNavigate } from 'react-router-dom'; 
 import "./App.scss";
@@ -70,9 +71,7 @@ function App() {
         </div> 
         <br></br>
         <div class="center">
-        <button class="login" type="button" onClick={handleLogin}>
-          Login
-        </button>
+        <Button variant="info" class="btn btn-info text-white fw-bold" onClick={handleLogin} >Login</Button>
         </div>
         </div>
         </form>

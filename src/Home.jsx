@@ -21,8 +21,8 @@ const handleLogout = () => {
 function Home() {
     return(
       <div>
-      {/* <nav class="navbar navbar-expand-lg bg-light">
-        <ul>
+      <nav class="navbar navbar-expand-lg justify-content-center">
+        <ul class="mb-0">
           <li>
             <Link to="/home">Home</Link>
           </li>
@@ -33,37 +33,15 @@ function Home() {
             <Link to="/dashboard">Settings</Link>
           </li>
           <li>
-          <Link to="/"><Button type="logout">Logout</Button></Link>
+          <Link to="/"><Button variant="info" class="btn btn-info text-white fw-bold">Logout</Button></Link>
           </li>
         </ul>
-      </nav> */}
-      <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      </nav>
+  
 
       <div class="content">
       <header>
-        <h1>Welcome to XYZ Bank</h1>
+        <h1 class="fw-bold">Welcome to XYZ Bank</h1>
     </header>
     <main>
         <section id="account-overview">
@@ -110,11 +88,10 @@ function Home() {
             <h2>Get Started</h2>
             <p>Log in to your account or sign up today to experience the future of banking with XYZ Bank. We're here to help you achieve your financial goals.</p>
         </section>
-    </main>
-    
-    <footer>
+        <footer>
         <p>&copy; 2023 XYZ Bank. All rights reserved.</p>
     </footer>
+    </main>
       </div>
     </div>
   );

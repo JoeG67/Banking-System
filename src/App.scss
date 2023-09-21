@@ -35,6 +35,12 @@
   justify-content: center;
 }
 
+Button{
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
 .login-form {
   background-color: white;
   padding: 2rem;
@@ -72,7 +78,7 @@
 nav{
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
-  background-color: black;
+  background-color: #000080;
   justify-content: center;
   padding: 10px;
   text-decoration: none;
@@ -81,6 +87,7 @@ nav{
 li {
   display: inline;
   padding: 10px;
+  padding-bottom: 0;
   font-weight: bolder;
   color: white;
   text-decoration: none;
@@ -90,7 +97,7 @@ li {
     text-decoration: none;
 
     &:hover {
-      color: blue;
+      color: #87CEEB;
     }
 
     } 
@@ -99,7 +106,7 @@ li {
 
 ul {
   list-style-type: none;
-  margin: 0;
+  margin-bottom: 0;
   padding: 0;
 }
 
@@ -110,4 +117,5 @@ ul {
 .content{
   text-align: center;
   justify-content: center;
+  background-color: lightcyan;
 }
