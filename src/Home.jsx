@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import ReactDOM from "react-dom";
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import {Helmet} from "react-helmet";
 import "./App.scss";
+import Footer from './Footer';
+import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const handleLogout = () => {
@@ -20,35 +16,15 @@ const handleLogout = () => {
 
 function Home() {
     return(
-      <div>
-      <nav class="navbar navbar-expand-lg justify-content-center">
-        <ul class="mb-0">
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/account">Account</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Settings</Link>
-          </li>
-          <li>
-          <Link to="/"><Button variant="info" class="btn btn-info text-white fw-bold">Logout</Button></Link>
-          </li>
-        </ul>
-      </nav>
-  
-
+      <div class="home">
+        <Helmet>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover"/>
+        </Helmet>
+        <Navbar />
       <div class="content">
       <header>
         <h1 class="fw-bold">Welcome to XYZ Bank</h1>
     </header>
-    <main>
-        <section id="account-overview">
-            <h2>Account Overview</h2>
-            <p>View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
-        </section>
-
         <section id="secure-transactions">
             <h2>Secure Transactions</h2>
             <p>Your security is our top priority. Rest assured that your transactions are protected by advanced encryption and security measures.</p>
@@ -78,22 +54,10 @@ function Home() {
             <h2>Stay Informed</h2>
             <p>Stay up to date with the latest financial news, tips, and resources. Explore our blog and educational materials to enhance your financial knowledge.</p>
         </section>
-
-        <section>
-            <h2>Security First</h2>
-            <p>Your security is our utmost concern. We employ robust security measures to protect your information and ensure safe banking.</p>
-        </section>
-
-        <section>
-            <h2>Get Started</h2>
-            <p>Log in to your account or sign up today to experience the future of banking with XYZ Bank. We're here to help you achieve your financial goals.</p>
-        </section>
-        <footer>
-        <p>&copy; 2023 XYZ Bank. All rights reserved.</p>
-    </footer>
-    </main>
-      </div>
+        </div>
+        <Footer />
     </div>
+
   );
 }
 export default Home;

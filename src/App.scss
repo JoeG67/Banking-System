@@ -1,3 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; // not neccesary
+ }
+
+
 .app {
   font-family: sans-serif;
   display: flex;
@@ -5,9 +12,14 @@
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   background-color: lightcyan;
+}
+
+html{
+    min-height: calc(100vh - 40px);
 }
 
 // input[type="text"],
@@ -54,6 +66,12 @@ Button{
 
 }
 
+p{
+  margin-bottom: 0;
+}
+h1{
+  text-align: center;
+}
 .list-container { 
   display: flex;
 }
@@ -110,12 +128,23 @@ ul {
   padding: 0;
 }
 
-
-
-
-
 .content{
-  text-align: center;
-  justify-content: center;
   background-color: lightcyan;
+  min-height: 120vh;
+}
+
+footer {
+  text-align: center;
+  background-color: black;
+  color: white;
+position: bottom;
+}
+
+.account{
+  min-height: 100vh;
+
+  &::after {
+    content: "";
+    display: block;
+  }
 }
