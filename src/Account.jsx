@@ -5,18 +5,27 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import 'bootstrap/dist/css/bootstrap.css';
+function Account() {
 
-const handleLogout = () => {
-  // Perform logout logic (e.g., clearing authentication tokens)
-  // Redirect to the login page or perform any other desired action
-  // For this example, we'll simply navigate back to the login page
-  // You should replace this with your actual logout logic
-  // You may also use useHistory for navigation
-  window.location.href = '/'; // Redirect to the login page
+  const [balance, setBalance] = useState(1000)
+
+  const [incrementBy, setIncrementBy] = useState(1);
+  const [decrementBy, setDecrementBy] = useState(1);
+
+const increment = () => {
+  setBalance(balance + parseInt(incrementBy));
 };
 
-function Home() {
+// Function to decrement the 'count' variable by a custom value
+const decrement = () => {
+  // Add a check to prevent count from going below 0
+  if (balance >= parseInt(decrementBy) && balance !== 20) {
+    setBalance(balance - parseInt(decrementBy));
+  }
+  else {
+    alert("Minimum account balance of RM20 has been reached, please deposit additional cash to continue withdrawal")
+  }
+};
     return(
       <div class ="account">
         <Helmet>
@@ -31,9 +40,32 @@ function Home() {
             <h2>Account Overview</h2>
             <p>View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
         </section>
+        <div>
+      <p>Balance: {balance}</p>
+
+      <div>
+        <label>Deposit: </label>
+        <input
+          type="number"
+          value={incrementBy}
+          onChange={(e) => setIncrementBy(e.target.value)}
+        />
+        <button onClick={increment}>Increment</button>
+      </div>
+
+      <div>
+        <label>Withdraw: </label>
+        <input
+          type="number"
+          value={decrementBy}
+          onChange={(e) => setDecrementBy(e.target.value)}
+        />
+        <button onClick={decrement}>Decrement</button>
+      </div>
+    </div>
         </div>
         <Footer />
     </div>
   );
 }
-export default Home;
+export default Account;

@@ -139,12 +139,3 @@ footer {
   color: white;
 position: bottom;
 }
-
-.account{
-  min-height: 100vh;
-
-  &::after {
-    content: "";
-    display: block;
-  }
-}

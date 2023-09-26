@@ -18,7 +18,7 @@ function Navbar() {
         <Link to="/account">Account</Link>
       </li>
       <li>
-        <Link to="/dashboard">Settings</Link>
+        <Link to="/contact">Contact</Link>
       </li>
       <li>
       <Link to="/"><Button variant="info" class="btn btn-info text-white fw-bold">Logout</Button></Link>

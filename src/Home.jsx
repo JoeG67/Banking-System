@@ -5,15 +5,6 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 
-const handleLogout = () => {
-  // Perform logout logic (e.g., clearing authentication tokens)
-  // Redirect to the login page or perform any other desired action
-  // For this example, we'll simply navigate back to the login page
-  // You should replace this with your actual logout logic
-  // You may also use useHistory for navigation
-  window.location.href = '/'; // Redirect to the login page
-};
-
 function Home() {
     return(
       <div class="home">
