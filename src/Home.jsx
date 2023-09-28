@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import {Helmet} from "react-helmet";
-import "./App.scss";
 import Footer from './Footer';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import "./App.scss";
 function Home() {
     return(
       <div class="home">

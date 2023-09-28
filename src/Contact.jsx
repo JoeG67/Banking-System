@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import {Helmet} from "react-helmet";
 import { Link } from '@react-email/link';
-import "./App.scss";
 import Footer from './Footer';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import "./App.scss";
 
 function Contact() {
     return(

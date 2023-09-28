@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import {Helmet} from "react-helmet";
-import "./App.scss";
 import Footer from './Footer';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import "./App.scss";
 function Account() {
 
   const [balance, setBalance] = useState(1000)
@@ -19,11 +18,10 @@ const increment = () => {
 // Function to decrement the 'count' variable by a custom value
 const decrement = () => {
   // Add a check to prevent count from going below 0
-  if (balance >= parseInt(decrementBy) && balance !== 20) {
+  if (balance > parseInt(decrementBy) && balance !== 20) {
     setBalance(balance - parseInt(decrementBy));
-  }
-  else {
-    alert("Minimum account balance of RM20 has been reached, please deposit additional cash to continue withdrawal")
+  } else {
+    alert("Minimum account balance of RM20 is required for transactions to be made, please withdraw an appropriate amount or deposit enough cash to continue withdrawal activity");
   }
 };
     return(
