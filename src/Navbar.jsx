@@ -21,7 +21,7 @@ function Navbar() {
   //     </li>
   //   </ul>
   // </nav>
-  <nav class="navbar navbar-expand-lg shadow mb-1 bg-body rounded">
+  <nav class="navbar navbar-expand-lg  mb-1 rounded">
     <div class="container-fluid">
     <li><Link to="/home"> 
     <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""/><a class="navbar-brand" href="#">XYZBank</a></Link></li>
@@ -43,7 +43,7 @@ function Navbar() {
       
        </li>
       </ul>
-      <form class="d-flex" role="search">
+      <form class="" role="search">
       <Link to="/"><Button variant="info" class="btn btn-info text-white fw-bold">Logout</Button></Link>
       </form>
     </div>

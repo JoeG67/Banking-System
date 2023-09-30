@@ -7,28 +7,12 @@ import "./App.scss";
 function Home() {
     return(
       <div class="home">
+      <Navbar />
         <Helmet>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover"/>
+        <meta name="viewport" title="Home" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover"/>
         </Helmet>
-        <Navbar />
-      {/* <div class="content">
-  
-        <section>
-            <h2>24/7 Access</h2>
-            <p>Access your accounts anytime, anywhere. Our online banking system is available around the clock to serve your needs.</p>
-        </section>
-
-        <section>
-            <h2>Personalized Support</h2>
-            <p>Have questions or need assistance? Our dedicated customer support team is here to help. Contact us via chat, email, or phone.</p>
-        </section>
-
-        <section>
-            <h2>Stay Informed</h2>
-            <p>Stay up to date with the latest financial news, tips, and resources. Explore our blog and educational materials to enhance your financial knowledge.</p>
-        </section>
-        </div> */}
-        <header class="bg-dark py-5">
+        
+        <header class="bg-dark py-3 mt-0">
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
@@ -41,7 +25,7 @@ function Home() {
         </header>
 
         <section class="py-5 border-bottom" id="features">
-            <div class="container px-5 my-5">
+            <div class="container px-4 my-4">
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
