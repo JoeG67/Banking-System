@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Button from 'react-bootstrap/Button';
 import ReactDOM from "react-dom";
 import { useNavigate } from 'react-router-dom'; 
 import "./App.scss";
 
-function App() {
+function Login() {
   // React States(Ensures that stuff like the email, password and error messages can be validated)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +28,7 @@ function App() {
     if (email === '' || password === '') {
       setErrorMessage(alert('Username and password must be filled. Please try again.'));
     } else {
-      // Simulate a login request (replace with  authentication logic)
+      // Simulate a login request (replace with authentication logic)
       if (email === 'username' && password === 'password') {
         navigate("/Home"); // Redirect to the Home page
 
@@ -90,4 +90,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;
