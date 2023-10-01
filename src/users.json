@@ -1,5 +1,5 @@
 [
-    { "email": "username", "password": "password", "balance": "1500"},
+    { "email": "username", "password": "password", "balance": "1000"},
     { "email": "user2", "password": "pass2", "balance": "1500"},
     { "email": "user3", "password": "pass3", "balance": "2000"}
   ]

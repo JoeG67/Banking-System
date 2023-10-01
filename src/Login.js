@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from 'react-bootstrap/Button';
 import ReactDOM from "react-dom";
 import userData from './users.json';
+import { useUser } from "./UserContext";
 import { useNavigate } from 'react-router-dom'; 
 import "./App.scss";
 
+const UserContext = React.createContext();
+
 function App() {
   // React States(Ensures that stuff like the email, password and error messages can be validated)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
  
   const navigate = useNavigate();
+  const { login } = useUser();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -29,8 +33,11 @@ function App() {
     if (email === '' || password === '') {
       setErrorMessage(alert('Username and password must be filled. Please try again.'));
     } else {
+      setIsLoggedIn(true);
       const user = userData.find((user) => user.email === email && user.password === password);
       if (user) {
+      console.log("User logged in:", user);
+      login(user); // Set the user data in the context
         navigate("/Home"); // Redirect to the Home page
 
       } else {  // Redirect to another page or perform further actions here(either 404 or error popup)
@@ -84,7 +91,7 @@ function App() {
        <div className="login">
       <div className="login-form">
         <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        {isLoggedIn ? <div>User is successfully logged in</div> : renderForm}
       </div>
       </div>
     </div>

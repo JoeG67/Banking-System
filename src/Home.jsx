@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import {Helmet} from "react-helmet";
 import Footer from './Footer';
 import Navbar from './Navbar';
+import userData from './users.json';
+import { useUser } from "./UserContext";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.scss";
 function Home() {
+    const { user } = useUser();
     return(
       <div class="home">
       <Navbar />
@@ -17,7 +20,7 @@ function Home() {
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
                         <div class="text-center my-5">
-                            <h1 class="display-5 fw-bolder text-white mb-1">Welcome to XYZ Bank</h1>
+                            <h1 class="display-5 fw-bolder text-white mb-1">Welcome to XYZ Bank, {user.email}</h1>
                         </div>
                     </div>
                 </div>
