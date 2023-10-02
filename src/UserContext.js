@@ -1,24 +1,20 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react"; // Imports Context and other hooks from React
 import userData from './users.json'; // Import the JSON data
 
-const UserContext = createContext();
+const UserContext = createContext(); // Context file is created to help share and manage globat state across application
 
-export const useUser = () => {
-  return useContext(UserContext);
+export const useUser = () => { // Created to get user context
+  return useContext(UserContext); //Returns the user context using the useContext hook that is imported
 };
 
-export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export const UserProvider = ({ children }) => { // UserProvider component is created and can be exported to other components, the children prop represents any elements or components that are within the UserProvider component
+  const [user, setUser] = useState(null); //  user value is meant to store user data(set to null value by default), setUser function is present to update user value depending on situation
 
-  // Load user data from JSON file when the component is mounted
-  useEffect(() => {
-    // You can customize this logic to load user data as needed
-    // For example, if you want to load user data when the app starts:
-    // const initialUser = userData.find((user) => user.id === someUserId);
-    // setUser(initialUser);
+  useEffect(() => {// Load user data from JSON file when the component is mounted
   }, []);
 
-  const login = (userData) => {
+  // Login and logout functions are defined which allow the app to either set(set userData to be used when logging in) or clear(when logging out) the user state
+  const login = (userData) => { // 
     setUser(userData);
   };
 
@@ -26,6 +22,7 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   };
 
+  // Component named UserProvider is named as an export so it can be used in other parts of the code. It also provides context values to its descendant components.
   return (
     <UserContext.Provider value={{ user, login, logout }}>
       {children}
