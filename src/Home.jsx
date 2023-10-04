@@ -20,14 +20,14 @@ function Home() {
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
                         <div class="text-center my-5">
-                            <h1 class="display-5 fw-bolder text-white mb-1">Welcome to XYZ Bank, {user.email}</h1>
+                            <h1 class="display-5 fw-bolder text-white mb-1">Welcome to XYZ Bank</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <section class="py-5 border-bottom" id="features">
+        <section class="border-bottom" id="features">
             <div class="container px-4 my-4">
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5 mb-lg-0">
@@ -49,8 +49,8 @@ function Home() {
             </div>
         </section>
 
-        <section class="py-5 border-bottom">
-            <div class="container px-5 my-5 px-5">
+        <section class="border-bottom">
+            <div class="container px-4 my-4 px-4">
                 <div class="text-center mb-5">
                     <h2 class="fw-bolder">Customer testimonials</h2>
                     <p class="lead mb-0">Our customers love working with us</p>
