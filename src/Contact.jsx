@@ -61,6 +61,21 @@ function Contact() {
                       <h2 class="h4 fw-bolder">Placeholder</h2>
                       <p>LoremIpsum</p>
                   </div>
+                  <div class="col-lg-4 mb-5 mb-lg-0">
+                      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                      <h2 class="h4 fw-bolder">Placeholder</h2>
+                      <p>LoremIpsum</p>
+                  </div>
+                  <div class="col-lg-4 mb-5 mb-lg-0">
+                      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                      <h2 class="h4 fw-bolder">Placeholder</h2>
+                      <p>LoremIpsum</p>
+                  </div>
+                  <div class="col-lg-4 mb-5 mb-lg-0">
+                      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                      <h2 class="h4 fw-bolder">Placeholder</h2>
+                      <p>LoremIpsum</p>
+                  </div>
               </div>
           </div>
       </section>
