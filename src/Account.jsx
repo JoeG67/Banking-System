@@ -18,7 +18,6 @@ function Account() {
   const [decrementBy, setDecrementBy] = useState(1);
 
 const increment = () => {
-
   setBalance(balance + parseInt(incrementBy));
 };
 
