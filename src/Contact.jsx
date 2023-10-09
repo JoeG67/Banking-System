@@ -25,7 +25,8 @@ function Contact() {
               </div>
           </div>
       </header>
-
+    
+    {/* Section below displays basic headlines and descriptions for the contact page */}
       <section class="border-bottom" id="features">
           <div class="container px-4 my-4">
               <div class="row gx-5">
@@ -42,7 +43,7 @@ function Contact() {
                   <div class="col-lg-4">
                       <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
                       <h2 class="h4 fw-bolder">Contact Information</h2>
-                      <p>Customer Service Hotline: <Link href="(123) 456-7890">(123) 456-7890</Link></p>
+                      <p>Customer Service Hotline: <Link href="(123) 456-7890">(123) 456-7890</Link></p>   {/*Link components are used for the phone number and emails*/}
                      <p> Email: <Link href="support@xyzbank.com">support@xyzbank.com</Link></p>
                      <p>Visit Us: 123 Main Street, City, State, ZIP</p>
                   </div>
