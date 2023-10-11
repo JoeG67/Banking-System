@@ -14,6 +14,11 @@ function Account() {
   const { user } = useUser(); // Assuming you have the user's email after login
   //The hooks below are initialized and created to help control the values of specific variables within the account page
 
+  //Both hooks below are set to get the current date and time to be displayed in the popup modals
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
+
+
   // Three hooks below are related to the user's account balance and how the balance is manipulated
   const [balance, setBalance] = useState(user ? parseInt(user.balance) : 0);
   const [incrementBy, setIncrementBy] = useState(1); // Initial/default values are set to 1
@@ -115,7 +120,7 @@ const transfer = () => {
           <Modal.Title>Bank XYZ</Modal.Title>
         </Modal.Header>
            {/*Value being used to change the balance value is displayed below, onClick tag linking to the closing function*/}
-        <Modal.Body>You have deposited RM{incrementBy} into your account</Modal.Body>
+        <Modal.Body>You have deposited RM{incrementBy} into your account on {currDate} at {currTime}</Modal.Body>
         <Modal.Footer>
           {/*onClick linking to the closing function when the button is clicked*/}
           <Button variant="secondary" onClick={handleCloseInc}>
@@ -136,7 +141,7 @@ const transfer = () => {
           <Modal.Title>Bank XYZ</Modal.Title>
         </Modal.Header>
          {/*Value being used to change the balance value is displayed below, onClick tag linking to the closing function*/}
-        <Modal.Body>You have withdrawn RM{decrementBy} from your account</Modal.Body>
+        <Modal.Body>You have withdrawn RM{decrementBy} from your account on {currDate} at {currTime}</Modal.Body>
         <Modal.Footer>
            {/*onClick linking to the closing function when the button is clicked*/}
           <Button variant="secondary" onClick={handleCloseDec}>
@@ -173,7 +178,7 @@ const transfer = () => {
           <Modal.Title>Bank XYZ</Modal.Title>
         </Modal.Header>
           {/*Value being used to change the balance value is displayed below, onClick tag linking to the closing function*/}
-        <Modal.Body>You have transferred RM{decrementBy} from your account to {message}.</Modal.Body>
+        <Modal.Body>You have transferred RM{decrementBy} from your account to {message} on {currDate} at {currTime}.</Modal.Body>
         <Modal.Footer>
             {/*onClick linking to the closing function when the button is clicked*/}
           <Button variant="secondary" onClick={handleCloseTran}>
