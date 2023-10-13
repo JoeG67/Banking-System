@@ -4,7 +4,6 @@ import {Helmet} from "react-helmet";
 import Footer from './Footer';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import userData from './users.json';
 import { useUser } from "./UserContext";
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';

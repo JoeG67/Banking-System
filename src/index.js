@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Button from 'react-bootstrap/Button';
-import userData from './users.json';
-import { useNavigate } from 'react-router-dom'; 
-import { UserProvider, useUser } from './UserContext';
+import { UserProvider} from './UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

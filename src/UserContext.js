@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from "react"; // Imports Context and other hooks from React
-import userData from './users.json'; // Import the JSON data
 
 const UserContext = createContext(); // Context file is created to help share and manage globat state across application
 

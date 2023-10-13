@@ -1,5 +1,4 @@
 import React, { useState} from "react";
-import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import "./App.scss";
 import Login from './Login'; // Assuming this is the name of your login form component
