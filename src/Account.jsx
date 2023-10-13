@@ -9,10 +9,13 @@ import { useUser } from "./UserContext";
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.scss";
+import axios from 'axios';
 
 function Account() {
   const { user } = useUser(); // Assuming you have the user's email after login
-  //The hooks below are initialized and created to help control the values of specific variables within the account page
+
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   //Both hooks below are set to get the current date and time to be displayed in the popup modals
   const currDate = new Date().toLocaleDateString();
@@ -21,8 +24,8 @@ function Account() {
 
   // Three hooks below are related to the user's account balance and how the balance is manipulated
   const [balance, setBalance] = useState(user ? parseInt(user.balance) : 0);
-  const [incrementBy, setIncrementBy] = useState(1); // Initial/default values are set to 1
-  const [decrementBy, setDecrementBy] = useState(1); // Initial/default values are set to 1
+  const [incrementBy, setIncrementBy] = useState(0); // Initial/default values are set to 1
+  const [decrementBy, setDecrementBy] = useState(0); // Initial/default values are set to 1
 
   //React hooks below are related to the modals that pop up when the user balance is withdrawn from, deposited to, or transferred from
   const [showInc, setShowInc] = useState(false); // Initial/default values are set to false
@@ -38,6 +41,21 @@ function Account() {
     console.log('value is:', event.target.value);
   };
 
+  useEffect(() => {
+    // Define the API URL for fetching a single post (e.g., post with ID 1)
+    const apiUrl = 'https://jsonplaceholder.typicode.com/comments/1';
+
+    // Make an API GET request when the component mounts
+    axios.get(apiUrl)
+      .then((response) => {
+        setPost(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
+  }, []); 
 //React hooks below allow the previously mentioned modals to be closed when the modal button is clicked
   const handleCloseInc = () => setShowInc(false);
   const handleCloseDec = () => setShowDec(false);
@@ -188,6 +206,26 @@ const transfer = () => {
       </Modal>
                 </div>
             </div>
+            </div>
+        </section>
+        <section class="border bottom" id="features">
+        <div class="container px-5 my-5 px-5">
+                <div class="text-center mb-3">
+                    <h2 class="fw-bolder">Daily Stock Updates</h2>
+                    <p class="lead mb-0">View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
+                </div>
+                <div class="text-center mb-2">
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+        <h4 class="fw-bolder">Stock name:</h4>
+        <p>{post.name}</p>
+        <h4 class="fw-bolder">Stock price:</h4>
+          <p>RM{post.id}</p>
+        </div>
+      )}
+      </div>
             </div>
         </section>
        <Footer /> 
