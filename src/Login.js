@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 import Button from 'react-bootstrap/Button';
 import ReactDOM from "react-dom";
-import userData from './users.json';
 import { useUser } from "./UserContext";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import "./App.scss";
 
+axios.defaults.baseURL = 'http://localhost:3001'; // Replace with your server's URL
 const UserContext = React.createContext();
 
 function App() {
@@ -28,24 +30,49 @@ function App() {
   };
 
 
-  const handleLogin = () => {
-    // Simple form validation (replace with validation logic)
-    if (email === '' || password === '') {
-      setErrorMessage(alert('Username and password must be filled. Please try again.'));
-    } else {
-      setIsLoggedIn(true);
-      const user = userData.find((user) => user.email === email && user.password === password);
-      if (user) {
-        console.log("User logged in:", user);
-        login(user); // Set the user data in the context
-        navigate("/Home"); // Redirect to the Home page
+  // const handleLogin = () => {
+  //   // Simple form validation (replace with validation logic)
+  //   if (email === '' || password === '') {
+  //     setErrorMessage(alert('Username and password must be filled. Please try again.'));
+  //   } else {
+  //     setIsLoggedIn(true);
+  //     const user = userData.find((user) => user.email === email && user.password === password);
+  //     if (user) {
+  //       console.log("User logged in:", user);
+  //       login(user); // Set the user data in the context
+  //       navigate("/Home"); // Redirect to the Home page
 
-      } else {  // Redirect to another page or perform further actions here(either 404 or error popup)
-        setErrorMessage(alert('Invalid email or password.'));
-      }
-    }
-  };
+  //     } else {  // Redirect to another page or perform further actions here(either 404 or error popup)
+  //       setErrorMessage(alert('Invalid email or password.'));
+  //     }
+  //   }
+  // };
 
+ // Update the handleLogin function to send a POST request
+const handleLogin = () => {
+  // Simple form validation (replace with validation logic)
+  if (email === '' || password === '') {
+    setErrorMessage(alert('Username and password must be filled. Please try again.'));
+  } else {
+    axios.post('/api/users', { email, password }) // Send email and password in the request body
+      .then((response) => {
+        const user = response.data;
+        if (user) {
+          console.log("User logged in:", user);
+          login(user); // Set the user data in the context
+          setIsLoggedIn(true);
+          navigate("/Home"); // Redirect to the Home page
+        } else {
+          setErrorMessage(alert('Invalid email or password.'));
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+};
+
+  
 
   // JSX code for login form
   const renderForm = (

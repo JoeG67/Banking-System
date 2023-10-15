@@ -11,83 +11,89 @@ import "./App.scss";
 import axios from 'axios';
 
 function Account() {
-  const { user } = useUser(); // Assuming you have the user's email after login
+  const { user } = useUser();
 
-  // Hooks below related to API fetching using axios library
-  const [post, setPost] = useState(null); //post is the variable that the data is fetched from
-  const [loading, setLoading] = useState(true); // loading is the boolean variable to show whether the data is being loaded in
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [currDate, setCurrDate] = useState(new Date().toLocaleDateString());
+  const [currTime, setCurrTime] = useState(new Date().toLocaleTimeString());
 
-  //Both hooks below are set to get the current date and time to be displayed in the popup modals
-  const currDate = new Date().toLocaleDateString();
-  const currTime = new Date().toLocaleTimeString();
-
-
-  // Three hooks below are related to the user's account balance and how the balance is manipulated
+  // State to manage balance
   const [balance, setBalance] = useState(user ? parseInt(user.balance) : 0);
-  const [incrementBy, setIncrementBy] = useState(0); // Initial/default values are set to 1
-  const [decrementBy, setDecrementBy] = useState(0); // Initial/default values are set to 1
+  const [incrementBy, setIncrementBy] = useState(0);
+  const [decrementBy, setDecrementBy] = useState(0);
+  const [message, setMessage] = useState('');
 
-  //React hooks below are related to the modals that pop up when the user balance is withdrawn from, deposited to, or transferred from
-  const [showInc, setShowInc] = useState(false); // Initial/default values are set to false
-  const [showDec, setShowDec] = useState(false); // Initial/default values are set to false
-  const [showTran, setShowTran] = useState(false); // Initial/default values are set to false
+  // State to manage modals
+  const [showInc, setShowInc] = useState(false);
+  const [showDec, setShowDec] = useState(false);
+  const [showTran, setShowTran] = useState(false);
 
-  // Hook below is set up to help control the message value when changed in the input
-  const [message, setMessage] = useState(''); // Initial/default values are set to null
+  // Function to fetch user balance
+  useEffect(() => {
+    if (user) {
+      axios.get(`/api/users/${user.email}`)
+        .then((response) => {
+          setBalance(response.data.balance);
+        })
+        .catch((error) => {
+          console.error('Error fetching user balance:', error);
+        });
+    }
+  }, [user]);
 
-  //Function below allows for the message to be changed and updated based on what is in the input field
-  const handleChange = event => {
-    setMessage(event.target.value);
-    console.log('value is:', event.target.value);
-  };
-
-  //React hooks below allow the previously mentioned modals to be closed when the modal button is clicked
   const handleCloseInc = () => setShowInc(false);
   const handleCloseDec = () => setShowDec(false);
   const handleCloseTran = () => setShowTran(false);
 
-  // Function to increase the 'balance' variable through a custom input
   const increment = () => {
-    setShowInc(true); //Displays the modal 
-    setBalance(balance + parseInt(incrementBy)); // Updates the balance value based on user input
+    axios.post('/api/deposit', { email: user.email, balance: parseInt(incrementBy) })
+      .then((response) => {
+        setBalance(response.data.balance);
+        setShowInc(true);
+      })
+      .catch((error) => {
+        console.error('Error depositing:', error);
+        toast("An error occurred while depositing funds.");
+      });
   };
 
-  // Function to decrease the 'balance' variable through a custom input
   const decrement = () => {
-    // Add a check to prevent count from going below 0 (minimum amount allowed is RM20)
-    if (balance > parseInt(decrementBy) && balance !== 20) {
-      setShowDec(true); //Displays the modal 
-      setBalance(balance - parseInt(decrementBy)); // Updates the balance value based on user input
-    } else {
-      // User alert to show the user information about the balance limit
-      toast("Minimum account balance of RM20 is required for transactions to be made, please withdraw an appropriate amount or deposit enough cash to continue withdrawal activity");
-    }
+    axios.post('/api/withdraw', { email: user.email, balance: parseInt(decrementBy) })
+      .then((response) => {
+        setBalance(response.data.balance);
+        setShowDec(true);
+      })
+      .catch((error) => {
+        console.error('Error withdrawing:', error);
+        toast("An error occurred while withdrawing funds.");
+      });
   };
 
+  const handleChange = event => {
+    setMessage(event.target.value);
+  };
 
-  // Function to transfer a custom amount of cash to a specific user
   const transfer = () => {
-    // Add a check to prevent count from going below 0 (minimum amount allowed is RM20)
-    if (balance > parseInt(decrementBy) && balance !== 20) {
-      setShowTran(true); //Displays the modal 
-      setBalance(balance - parseInt(decrementBy)); // Updates the balance value based on user input
-    } else {
-      // User alert to show the user information about the balance limit
-      toast("Minimum account balance of RM20 is required for transfers to be made, please transfer an appropriate amount or deposit enough cash to continue withdrawal activity");
-    }
+    axios.post('/api/transfer', { email: user.email, balance: parseInt(decrementBy), message: message })
+      .then((response) => {
+        setBalance(response.data.balance);
+        setShowTran(true);
+      })
+      .catch((error) => {
+        console.error('Error transferring:', error);
+        toast("An error occurred while transferring funds.");
+      });
   };
 
   useEffect(() => {
-    // Define the API URL for fetching a single post (e.g., post with ID 1)
     const apiUrl = 'https://jsonplaceholder.typicode.com/comments/1';
 
-    // Make an API GET request when the component mounts
     axios.get(apiUrl)
       .then((response) => {
         setPost(response.data);
         setLoading(false);
       })
-      //Error catching method in place to catch errors related to data fetching
       .catch((error) => {
         console.error('Error fetching data:', error);
         setLoading(false);
@@ -95,53 +101,48 @@ function Account() {
   }, []);
 
   return (
-    <div class="account">
+    <div className="account">
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
       </Helmet>
       <Navbar />
-      <header class="bg-dark py-5">
-        <div class="container px-5">
-          <div class="row gx-5 justify-content-center">
-            <div class="col-lg-6">
-              <div class="text-center my-5">
-                <h1 class="display-5 fw-bolder text-white mb-1">Account Details</h1>
+      <header className="bg-dark py-5">
+        <div className="container px-5">
+          <div className="row gx-5 justify-content-center">
+            <div className="col-lg-6">
+              <div className="text-center my-5">
+                <h1 className="display-5 fw-bolder text-white mb-1">Account Details</h1>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      <section class="border bottom" id="features">
-        <div class="container px-5 my-5 px-5">
-          <div class="text-center mb-5">
-            <h2 class="fw-bolder">Account Overview</h2>
-            <p class="lead mb-0">View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
+      <section className="border bottom" id="features">
+        <div className="container px-5 my-5 px-5">
+          <div className="text-center mb-5">
+            <h2 className="fw-bolder">Account Overview</h2>
+            <p className="lead mb-0">View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
           </div>
         </div>
       </section>
 
-      <section class="py-3 border-bottom">
-        <div class="container px-5 my-5 px-5">
-          <div class="text-center mb-5">
-            <h2 class="fw-bolder">Balance: RM{balance}</h2>  {/* Displays user balance */}
-            <h2 class="fw-bolder">Available for withdrawal: RM{balance - 20}</h2> {/* Displays user balance available for withdrawal*/}
+      <section className="py-3 border-bottom">
+        <div className="container px-5 my-5 px-5">
+          <div className="text-center mb-5">
+            <h2 className="fw-bolder">Balance: RM{balance}</h2>
+            <h2 className="fw-bolder">Available for withdrawal: RM{balance - 20}</h2>
             <div>
               <label>Deposit: </label>
-              {/*Value tag shows which variable is being used along with the onChange in place to update the balance*/}
-              <input type="number" class="numberInput" value={incrementBy} onChange={(e) => setIncrementBy(e.target.value)} />
-              {/*onClick showing which function is being called when the button is clicked*/}
+              <input type="number" className="numberInput" value={incrementBy} onChange={(e) => setIncrementBy(e.target.value)} />
               <Button variant="info" onClick={increment}>Increment</Button>
             </div>
-            {/*Show tag in place to specify which modal is being shown along with an onHide linking to the closing function*/}
             <Modal show={showInc} onHide={handleCloseInc}>
               <Modal.Header closeButton>
                 <Modal.Title>Bank XYZ</Modal.Title>
               </Modal.Header>
-              {/*Value being used to change the balance value is displayed below, onClick tag linking to the closing function*/}
               <Modal.Body>You have deposited RM{incrementBy} into your account on {currDate} at {currTime}</Modal.Body>
               <Modal.Footer>
-                {/*onClick linking to the closing function when the button is clicked*/}
                 <Button variant="secondary" onClick={handleCloseInc}>
                   Close
                 </Button>
@@ -149,20 +150,15 @@ function Account() {
             </Modal>
             <div>
               <label>Withdraw: </label>
-              {/*Value tag shows which variable is being used along with the onChange in place to update the balance*/}
-              <input type="number" class="numberInput" value={decrementBy} onChange={(e) => setDecrementBy(e.target.value)} />
-              {/*onClick showing which function is being called when the button is clicked*/}
+              <input type="number" className="numberInput" value={decrementBy} onChange={(e) => setDecrementBy(e.target.value)} />
               <Button variant="info" onClick={decrement}>Decrement</Button>
             </div>
-            {/*Show tag in place to specify which modal is being shown along with an onHide linking to the closing function*/}
             <Modal show={showDec} onHide={handleCloseDec}>
               <Modal.Header closeButton>
                 <Modal.Title>Bank XYZ</Modal.Title>
               </Modal.Header>
-              {/*Value being used to change the balance value is displayed below, onClick tag linking to the closing function*/}
               <Modal.Body>You have withdrawn RM{decrementBy} from your account on {currDate} at {currTime}</Modal.Body>
               <Modal.Footer>
-                {/*onClick linking to the closing function when the button is clicked*/}
                 <Button variant="secondary" onClick={handleCloseDec}>
                   Close
                 </Button>
@@ -172,34 +168,28 @@ function Account() {
         </div>
       </section>
 
-      <section class="border bottom" id="features">
-        <div class="container px-5 my-5 px-5">
-          <div class="text-center mb-2">
-            <h2 class="fw-bolder">Transfer</h2>
+      <section className="border bottom" id="features">
+        <div className="container px-5 my-5 px-5">
+          <div className="text-center mb-2">
+            <h2 className="fw-bolder">Transfer</h2>
           </div>
-          <div class="container px-5 my-5 px-5">
-            <div class="text-center">
+          <div className="container px-5 my-5 px-5">
+            <div className="text-center">
               <div>
                 <label>Transfer To: </label>
-                {/*Value tag shows which variable is being used along with the onChange in place to update the balance*/}
-                <input type="text" id="message" class="textInput" name="message" onChange={handleChange} value={message} />
+                <input type="text" id="message" className="textInput" name="message" onChange={handleChange} value={message} />
               </div>
               <div>
                 <label>Transfer: </label>
-                {/*Value tag shows which variable is being used along with the onChange in place to update the balance*/}
-                <input type="number" class="numberInput" value={decrementBy} onChange={(e) => setDecrementBy(e.target.value)} />
-                {/*onClick showing which function is being called when the button is clicked*/}
+                <input type="number" className="numberInput" value={decrementBy} onChange={(e) => setDecrementBy(e.target.value)} />
                 <Button variant="info" onClick={transfer}>Transfer</Button>
               </div>
-              {/*Show tag in place to specify which modal is being shown along with an onHide linking to the closing function*/}
               <Modal show={showTran} onHide={handleCloseTran}>
                 <Modal.Header closeButton>
                   <Modal.Title>Bank XYZ</Modal.Title>
                 </Modal.Header>
-                {/*Value being used to change the balance value is displayed below, onClick tag linking to the closing function*/}
                 <Modal.Body>You have transferred RM{decrementBy} from your account to {message} on {currDate} at {currTime}.</Modal.Body>
                 <Modal.Footer>
-                  {/*onClick linking to the closing function when the button is clicked*/}
                   <Button variant="secondary" onClick={handleCloseTran}>
                     Close
                   </Button>
@@ -209,21 +199,21 @@ function Account() {
           </div>
         </div>
       </section>
-      <section class="border bottom" id="features">
-        <div class="container px-5 my-5 px-5">
-          <div class="text-center mb-3">
-            <h2 class="fw-bolder">Daily Stock Updates</h2>
-            <p class="lead mb-0">View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
+      <section className="border bottom" id="features">
+        <div className="container px-5 my-5 px-5">
+          <div className="text-center mb-3">
+            <h2 className="fw-bolder">Daily Stock Updates</h2>
+            <p className="lead mb-0">View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
           </div>
-          <div class="text-center mb-2">
+          <div className="text-center mb-2">
             {loading ? (
-              <p>Loading...</p> // Loading text which disappears when data fetching is updated (either successful or unsuccessful)
+              <p>Loading...</p>
             ) : (
               <div>
-                <h4 class="fw-bolder">Stock name:</h4>
-                <p>{post.name}</p> {/*Name value is called from API state variable similar to how user values are called from the userContext*/}
-                <h4 class="fw-bolder">Stock price:</h4>
-                <p>RM{post.id}</p> {/*ID value is called from API state variable similar to how user values are called from the userContext*/}
+                <h4 className="fw-bolder">Stock name:</h4>
+                <p>{post.name}</p>
+                <h4 className="fw-bolder">Stock price:</h4>
+                <p>RM{post.id}</p>
               </div>
             )}
           </div>
@@ -233,6 +223,5 @@ function Account() {
     </div>
   );
 }
-
 
 export default Account;

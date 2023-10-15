@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Footer from './Footer';
 import Navbar from './Navbar';
-import userData from './users.json';
 import { useUser } from "./UserContext";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.scss";
