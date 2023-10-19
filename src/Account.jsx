@@ -27,7 +27,6 @@ function Account() {
   // State to manage modals
   const [showInc, setShowInc] = useState(false);
   const [showDec, setShowDec] = useState(false);
-  const [showTran, setShowTran] = useState(false);
 
   // Function to fetch user balance
   useEffect(() => {
@@ -44,7 +43,6 @@ function Account() {
 
   const handleCloseInc = () => setShowInc(false);
   const handleCloseDec = () => setShowDec(false);
-  const handleCloseTran = () => setShowTran(false);
 
   const increment = () => {
     axios.post('/api/deposit', { email: user.email, balance: parseInt(incrementBy) })
@@ -74,17 +72,6 @@ function Account() {
     setMessage(event.target.value);
   };
 
-  const transfer = () => {
-    axios.post('/api/transfer', { email: user.email, balance: parseInt(decrementBy), message: message })
-      .then((response) => {
-        setBalance(response.data.balance);
-        setShowTran(true);
-      })
-      .catch((error) => {
-        console.error('Error transferring:', error);
-        toast("An error occurred while transferring funds.");
-      });
-  };
 
   useEffect(() => {
     const apiUrl = 'https://jsonplaceholder.typicode.com/comments/1';
@@ -168,37 +155,6 @@ function Account() {
         </div>
       </section>
 
-      <section className="border bottom" id="features">
-        <div className="container px-5 my-5 px-5">
-          <div className="text-center mb-2">
-            <h2 className="fw-bolder">Transfer</h2>
-          </div>
-          <div className="container px-5 my-5 px-5">
-            <div className="text-center">
-              <div>
-                <label>Transfer To: </label>
-                <input type="text" id="message" className="textInput" name="message" onChange={handleChange} value={message} />
-              </div>
-              <div>
-                <label>Transfer: </label>
-                <input type="number" className="numberInput" value={decrementBy} onChange={(e) => setDecrementBy(e.target.value)} />
-                <Button variant="info" onClick={transfer}>Transfer</Button>
-              </div>
-              <Modal show={showTran} onHide={handleCloseTran}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Bank XYZ</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>You have transferred RM{decrementBy} from your account to {message} on {currDate} at {currTime}.</Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleCloseTran}>
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-            </div>
-          </div>
-        </div>
-      </section>
       <section className="border bottom" id="features">
         <div className="container px-5 my-5 px-5">
           <div className="text-center mb-3">
