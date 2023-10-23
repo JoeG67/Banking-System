@@ -22,6 +22,7 @@ function Account() {
   const [balance, setBalance] = useState(user ? parseInt(user.balance) : 0);
   const [incrementBy, setIncrementBy] = useState(0);
   const [decrementBy, setDecrementBy] = useState(0);
+  const [transferAmount, setTranAmountBy] = useState(0);
   const [message, setMessage] = useState('');
 
   // State to manage modals
@@ -58,6 +59,18 @@ function Account() {
 
   const decrement = () => {
     axios.post('/api/withdraw', { email: user.email, balance: parseInt(decrementBy) })
+      .then((response) => {
+        setBalance(response.data.balance);
+        setShowDec(true);
+      })
+      .catch((error) => {
+        console.error('Error withdrawing:', error);
+        toast("An error occurred while withdrawing funds.");
+      });
+  };
+
+  const transfer = () => {
+    axios.post('/api/transfer', { email: user.email, balance: parseInt(transferAmount) })
       .then((response) => {
         setBalance(response.data.balance);
         setShowDec(true);
@@ -155,6 +168,28 @@ function Account() {
         </div>
       </section>
 
+      <section className="border bottom" id="features">
+        <div className="container px-5 my-5 px-5">
+          <div className="text-center mb-3">
+          <div>
+              <label>Transfer: </label>
+              <input type="number" className="numberInput" value={transferAmount} onChange={(e) => setTranAmountBy(e.target.value)} />
+              <Button variant="info" onClick={transfer}>Decrement</Button>
+            </div>
+            <Modal show={showDec} onHide={handleCloseDec}>
+              <Modal.Header closeButton>
+                <Modal.Title>Bank XYZ</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>You have withdrawn RM{transferAmount} from your account on {currDate} at {currTime}</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseDec}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+        </div>
+      </section>
       <section className="border bottom" id="features">
         <div className="container px-5 my-5 px-5">
           <div className="text-center mb-3">

@@ -79,6 +79,27 @@ app.post('/api/withdraw', (req, res) => {
   });
 });
 
+app.post('/api/transfer', (req, res) => {
+  const { email, balance } = req.body; // Extract email and balance from the request body
+
+  // Update the user's balance in the database (use SQL UPDATE statement)
+  db.run('UPDATE users SET balance = balance - ? WHERE email = ?', [balance, email], (err) => {
+    if (err) {
+      console.error('Error updating balance:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+
+    // Fetch the updated balance from the database and send it in the response
+    db.get('SELECT balance FROM users WHERE email = ?', email, (err, row) => {
+      if (err) {
+        console.error('Error fetching updated balance:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+
+      res.json({ balance: row.balance });
+    });
+  });
+});
 
 
 // Create a table (if it doesn't exist)
