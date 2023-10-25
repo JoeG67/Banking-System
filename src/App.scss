@@ -122,11 +122,16 @@ ul {
   list-style: none;
 }
 footer {
-  text-align: center;
   background-color: black;
   color: white;
-  position: bottom;
+  padding: 20px;
+  border-top: 1px solid white;
+  text-align: center;
 }
+
+
+/* Adjust the font size and margin as needed for your social icons */
+
 
 .numberInput {
   margin: 1rem;
