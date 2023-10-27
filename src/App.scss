@@ -79,6 +79,15 @@ nav {
   background-color: lightcyan;
   justify-content: center;
   padding: 10px;
+
+  a {
+    color: black;
+    text-decoration: none;
+  
+    &:hover {
+      color: #87ceeb;
+    }
+  }
 }
 
 li {
@@ -103,6 +112,7 @@ ul {
   margin-bottom: 0;
   padding: 0;
   color: black;
+  text-decoration: none;
   text-align: center;
 }
 
@@ -115,11 +125,6 @@ ul {
 .account {
   background-color: lightcyan;
   //max-height: 120vh;
-}
-.custom-center-links {
-  justify-content: center;
-  align-items: center;
-  list-style: none;
 }
 footer {
   background-color: black;

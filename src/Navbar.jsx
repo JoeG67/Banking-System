@@ -2,18 +2,19 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import "./App.scss";
+import { Container } from 'react-bootstrap';
 
 function Navbar() {
   return (
+   
     <nav class="navbar navbar-expand-lg mb-1 rounded">
       <div class="container-fluid">
-        <li><Link to="/home">
-          <a class="navbar-brand" href="/#">XYZBank</a></Link></li>
+        <li><Link to="/home"><a class="navbar-brand" href="/#">XYZBank</a></Link></li>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse align-self-center" id="navbarSupportedContent">
+          <ul class="navbar-nav ms- me-auto">
             <li>
               <Link to="/home">Home</Link>
             </li>
@@ -26,8 +27,7 @@ function Navbar() {
             <li>
             </li>
           </ul>
-          <form class="custom-center-links" role="search">
-            <Link to="/"><Button variant="info" class="btn btn-info text-white fw-bold">Logout</Button></Link>
+          <form class="navbar-brand" role="search"><Link to="/">Logout</Link>
           </form>
         </div>
       </div>
