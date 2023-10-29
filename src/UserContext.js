@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react"; /
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/api/user'; // Replace with your server's URL
-const UserContext = createContext(); // Context file is created to help share and manage globat state across application
+const UserContext = createContext(); // Context instance is created to help share and manage global state across application
 
 export const useUser = () => { // Created to get user context
   return useContext(UserContext); //Returns the user context using the useContext hook that is imported
