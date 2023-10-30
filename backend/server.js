@@ -1,6 +1,6 @@
-const express = require('express');
-const sqlite3 = require('sqlite3');
-const cors = require('cors'); // For enabling CORS (Cross-Origin Resource Sharing)
+const express = require('express'); // Imports express into application
+const sqlite3 = require('sqlite3'); // Imports sqlite3 into app
+const cors = require('cors'); //  imports the cors middleware into the app to enable CORS (Cross-Origin Resource Sharing)
 
 const app = express();
 const port = process.env.PORT || 3001;
