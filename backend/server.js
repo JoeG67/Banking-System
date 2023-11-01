@@ -2,11 +2,11 @@ const express = require('express'); // Imports express into application
 const sqlite3 = require('sqlite3'); // Imports sqlite3 into app
 const cors = require('cors'); //  imports the cors middleware into the app to enable CORS (Cross-Origin Resource Sharing)
 
-const app = express();
-const port = process.env.PORT || 3001;
+const app = express(); // Creates instance of express in the app abject
+const port = process.env.PORT || 3001; //Defines the port number on which your server will listen for incoming HTTP requests. If PORT(hosting url) is not present, it will default to localhost port. 
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); //The app is told to use the cors middleware that was imported earlier
+app.use(express.json()); //The app is told to use the express middleware that was imported earlier
 
 // Initialize the SQLite database
 const db = new sqlite3.Database('banksystem.db');
