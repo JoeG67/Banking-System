@@ -8,38 +8,38 @@ const port = process.env.PORT || 3001; //Defines the port number on which your s
 app.use(cors()); //The app is told to use the cors middleware that was imported earlier
 app.use(express.json()); //The app is told to use the express middleware that was imported earlier
 
-// Initialize the SQLite database
-const db = new sqlite3.Database('banksystem.db');
+ 
+const db = new sqlite3.Database('banksystem.db'); // Created a db object which has a sqlite3 database instance as its value
 
-// Define API endpoints
+//API endpoints(HTTP post endpoints) are set up below. 
 
-// Example endpoint for retrieving a list of items
-// Change the endpoint to accept a POST request
-app.post('/api/users', (req, res) => {
+
+app.post('/api/users', (req, res) => { // Name of endpoint + request and response objects
   const { email, password } = req.body; // Extract the email and password from the request body
 
-  if (!email || !password) {
+  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
     return res.status(400).json({ error: 'Email and password are required in the request body' });
   }
 
+  //Database is checked for the corresponding email and password values
   db.get('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, row) => {
-    if (err) {
+    if (err) { // Error handling block for if any error occurs while query is executed
       console.error('Error querying the database:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
-    if (!row) {
+    if (!row) { // Error message returned for if no row is returned from the query
       return res.status(404).json({ error: 'User not found' });
     }
-    res.json(row);
+    res.json(row); // Response is returned with corresponding data
   });
 });
 
 app.post('/api/deposit', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
-  // Update the user's balance in the database (use SQL UPDATE statement)
+  // Update the user's balance in the database (use SQL UPDATE statement) adds value to balance
   db.run('UPDATE users SET balance = balance + ? WHERE email = ?', [balance, email], (err) => {
-    if (err) {
+    if (err) { // Error handling block
       console.error('Error updating balance:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
@@ -50,7 +50,7 @@ app.post('/api/deposit', (req, res) => {
         console.error('Error fetching updated balance:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
-
+      // Updated user balance is returned and sent to account page
       res.json({ balance: row.balance });
     });
   });
@@ -60,16 +60,16 @@ app.post('/api/deposit', (req, res) => {
 app.post('/api/withdraw', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
-  // Update the user's balance in the database (use SQL UPDATE statement)
+  // Update the user's balance in the database (use SQL UPDATE statement) subtracts balance
   db.run('UPDATE users SET balance = balance - ? WHERE email = ?', [balance, email], (err) => {
-    if (err) {
+    if (err) { // Error handling block
       console.error('Error updating balance:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
 
     // Fetch the updated balance from the database and send it in the response
     db.get('SELECT balance FROM users WHERE email = ?', email, (err, row) => {
-      if (err) {
+      if (err) { // Error handling block
         console.error('Error fetching updated balance:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
@@ -82,28 +82,28 @@ app.post('/api/withdraw', (req, res) => {
 app.post('/api/transfer', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
-  // Update the user's balance in the database (use SQL UPDATE statement)
+  // Update the user's balance in the database (use SQL UPDATE statement) tramsfers value from balance
   db.run('UPDATE users SET balance = balance - ? WHERE email = ?', [balance, email], (err) => {
-    if (err) {
+    if (err) { // Error handling block
       console.error('Error updating balance:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
 
     // Fetch the updated balance from the database and send it in the response
     db.get('SELECT balance FROM users WHERE email = ?', email, (err, row) => {
-      if (err) {
+      if (err) {// Error handling block
         console.error('Error fetching updated balance:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
-
+// Response is returned with corresponding data
       res.json({ balance: row.balance });
     });
   });
 });
 
 
-// Create a table (if it doesn't exist)
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// Express.js method that starts the server and listens on a specified port for incoming HTTP requests
+app.listen(port, () => { //Takes port as the argument 
+  console.log(`Server is running on port ${port}`); // Returns corresponding port number
 });
