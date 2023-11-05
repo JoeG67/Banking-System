@@ -11,8 +11,9 @@ import "./App.scss";
 import axios from 'axios';
 
 function Account() {
-  const { user } = useUser();
+  const { user } = useUser(); // useUser function is imported as the value of the user const
 
+  // useState hook declarations below to help with funcitons for various components in account page
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currDate, setCurrDate] = useState(new Date().toLocaleDateString());
@@ -31,51 +32,58 @@ function Account() {
 
   // Function to fetch user balance
   useEffect(() => {
-    if (user) {
-      axios.get(`/api/users/${user.email}`)
-        .then((response) => {
-          setBalance(response.data.balance);
+    if (user) { // Checks if user exists
+      axios.get(`/api/users/${user.email}`) // Checks if user email exists
+        .then((response) => { // response is accepted
+          setBalance(response.data.balance); // Balance is taken from user emaiil
         })
-        .catch((error) => {
+        .catch((error) => { // Error block
           console.error('Error fetching user balance:', error);
         });
     }
-  }, [user]);
+  }, [user]); // User object used as dependency
 
+  // Functions to handle closing of modals
   const handleCloseInc = () => setShowInc(false);
   const handleCloseDec = () => setShowDec(false);
 
+  //Increment function
   const increment = () => {
-    axios.post('/api/deposit', { email: user.email, balance: parseInt(incrementBy) })
+    //Sends post request to get email and balance. incrementBy value converted to an integer using parseInt. This is the amount of money being deposited.
+    axios.post('/api/deposit', { email: user.email, balance: parseInt(incrementBy) }) 
       .then((response) => {
-        setBalance(response.data.balance);
-        setShowInc(true);
+        setBalance(response.data.balance); // Updated balance value is taken from database
+        setShowInc(true); // Modal is displayed once increment is successful
       })
-      .catch((error) => {
+      .catch((error) => { // Error block
         console.error('Error depositing:', error);
         toast("An error occurred while depositing funds.");
       });
   };
 
+ //Decrement function
   const decrement = () => {
+     //Sends post request to get email and balance. incrementBy value converted to an integer using parseInt. This is the amount of money being withdrawn.
     axios.post('/api/withdraw', { email: user.email, balance: parseInt(decrementBy) })
       .then((response) => {
-        setBalance(response.data.balance);
-        setShowDec(true);
+        setBalance(response.data.balance); // Updated balance value is taken from database
+        setShowDec(true); //Modal is displayed once decrement is successful
       })
-      .catch((error) => {
+      .catch((error) => { // Error block
         console.error('Error withdrawing:', error);
         toast("An error occurred while withdrawing funds.");
       });
   };
 
+  //Decrement function
   const transfer = () => {
+        //Sends post request to get email and balance. incrementBy value converted to an integer using parseInt. This is the amount of money being transferred.
     axios.post('/api/transfer', { email: user.email, balance: parseInt(transferAmount) })
-      .then((response) => {
-        setBalance(response.data.balance);
-        setShowDec(true);
+      .then((response) => { 
+        setBalance(response.data.balance); // Updated balance value is taken from database 
+        setShowDec(true); //Modal is displayed once decrement is successful
       })
-      .catch((error) => {
+      .catch((error) => { //Error block
         console.error('Error withdrawing:', error);
         toast("An error occurred while withdrawing funds.");
       });
@@ -87,14 +95,14 @@ function Account() {
 
 
   useEffect(() => {
-    const apiUrl = 'https://jsonplaceholder.typicode.com/comments/1';
+    const apiUrl = 'https://jsonplaceholder.typicode.com/comments/1'; // API url in which data is taken from
 
     axios.get(apiUrl)
-      .then((response) => {
-        setPost(response.data);
-        setLoading(false);
+      .then((response) => { // On successful response
+        setPost(response.data); // Data is taken
+        setLoading(false); //Loading symbol is taken out
       })
-      .catch((error) => {
+      .catch((error) => { //Error block
         console.error('Error fetching data:', error);
         setLoading(false);
       });
