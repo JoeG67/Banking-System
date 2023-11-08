@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ReactDOM from "react-dom";
 import { useUser } from "./UserContext";
 import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import "./App.scss";
@@ -18,8 +19,8 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const navigate = useNavigate();
-  const { login } = useUser();
+  const navigate = useNavigate(); // Creates an instance of useNavigate
+  const { login } = useUser(); // Creates an instance of useUser
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -30,44 +31,30 @@ function App() {
   };
 
 
-  // const handleLogin = () => {
-  //   // Simple form validation (replace with validation logic)
-  //   if (email === '' || password === '') {
-  //     setErrorMessage(alert('Username and password must be filled. Please try again.'));
-  //   } else {
-  //     setIsLoggedIn(true);
-  //     const user = userData.find((user) => user.email === email && user.password === password);
-  //     if (user) {
-  //       console.log("User logged in:", user);
-  //       login(user); // Set the user data in the context
-  //       navigate("/Home"); // Redirect to the Home page
-
-  //     } else {  // Redirect to another page or perform further actions here(either 404 or error popup)
-  //       setErrorMessage(alert('Invalid email or password.'));
-  //     }
-  //   }
-  // };
-
  // Update the handleLogin function to send a POST request
-const handleLogin = () => {
-  // Simple form validation (replace with validation logic)
-  if (email === '' || password === '') {
+const handleLogin = async () => {
+// Trim function is used for input validation, cuts out white/blank spaces in user input field
+  const trimmedEmail = email.trim()
+  const trimmedPassword = password.trim()
+// If email and password inputs are null, alert the user 
+  if (trimmedEmail === '' || trimmedPassword === '') {
     setErrorMessage(alert('Username and password must be filled. Please try again.'));
   } else {
-    axios.post('/api/users', { email, password }) // Send email and password in the request body
+    axios
+      .post('/api/users', { email : trimmedEmail, password : trimmedPassword}) // Email and password are the parameters that are taken from the api
       .then((response) => {
         const user = response.data;
         if (user) {
           console.log("User logged in:", user);
           login(user); // Set the user data in the context
-          setIsLoggedIn(true);
+          setIsLoggedIn(true); // Logs the specific user into the system
           navigate("/Home"); // Redirect to the Home page
         } else {
           setErrorMessage(alert('Invalid email or password.'));
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
+      .catch((error) => { //Error catching
+        setErrorMessage(alert('An error occurred during login. Please try again later.'));
       });
   }
 };
