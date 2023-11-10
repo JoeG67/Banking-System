@@ -1,15 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
-import ReactDOM from "react-dom";
 import { useUser } from "./UserContext";
 import { useNavigate } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import "./App.scss";
 
 axios.defaults.baseURL = 'http://localhost:3001'; // Replace with your server's URL
-const UserContext = React.createContext();
 
 function App() {
   // React States(Ensures that stuff like the email, password and error messages can be validated)
@@ -17,7 +14,6 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const navigate = useNavigate(); // Creates an instance of useNavigate
   const { login } = useUser(); // Creates an instance of useUser
@@ -54,7 +50,7 @@ const handleLogin = async () => {
         }
       })
       .catch((error) => { //Error catching
-        setErrorMessage(alert('An error occurred during login. Please try again later.'));
+        setErrorMessage(alert('An error occurred during login. Please try again later.', error));
       });
   }
 };
@@ -75,7 +71,7 @@ const handleLogin = async () => {
             placeholder="Enter your email"
             required
           />
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div className="input-container">
           <label>Password </label>
@@ -87,13 +83,13 @@ const handleLogin = async () => {
             required
           />
         </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <div className="form-group form-check">
+          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+          <label className="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
         <br></br>
-        <div class="center">
-          <Button variant="info" class="btn btn-info text-white fw-bold" onClick={handleLogin} >Login</Button>
+        <div className="center">
+          <Button variant="info" className="btn btn-info text-white fw-bold" onClick={handleLogin} >Login</Button>
         </div>
       </div>
     </form>
