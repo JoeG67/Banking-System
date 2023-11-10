@@ -37,6 +37,9 @@ app.post('/api/users', (req, res) => { // Name of endpoint + request and respons
 app.post('/api/deposit', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
+  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
+    return res.status(400).json({ error: 'Email and password are required in the request body' });
+  }
   // Update the user's balance in the database (use SQL UPDATE statement) adds value to balance
   db.run('UPDATE users SET balance = balance + ? WHERE email = ?', [balance, email], (err) => {
     if (err) { // Error handling block
@@ -60,6 +63,9 @@ app.post('/api/deposit', (req, res) => {
 app.post('/api/withdraw', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
+  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
+    return res.status(400).json({ error: 'Email and password are required in the request body' });
+  }
   // Update the user's balance in the database (use SQL UPDATE statement) subtracts balance
   db.run('UPDATE users SET balance = balance - ? WHERE email = ?', [balance, email], (err) => {
     if (err) { // Error handling block
@@ -82,6 +88,9 @@ app.post('/api/withdraw', (req, res) => {
 app.post('/api/transfer', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
+  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
+    return res.status(400).json({ error: 'Email and password are required in the request body' });
+  }
   // Update the user's balance in the database (use SQL UPDATE statement) tramsfers value from balance
   db.run('UPDATE users SET balance = balance - ? WHERE email = ?', [balance, email], (err) => {
     if (err) { // Error handling block
