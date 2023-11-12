@@ -63,7 +63,7 @@ const handleLogin = async () => {
       <div className="form">
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="input-container">
-          <label>Username </label>
+          <label htmlFor="email">Username </label>
           <input
             type="email"
             value={email}
@@ -71,10 +71,12 @@ const handleLogin = async () => {
             placeholder="Enter your email"
             required
           />
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+          <small id="emailHelp" className="form-text text-muted">
+            We'll never share your email with anyone else.
+          </small>
         </div>
         <div className="input-container">
-          <label>Password </label>
+          <label htmlFor="password">Password </label>
           <input
             type="password"
             value={password}
@@ -85,17 +87,20 @@ const handleLogin = async () => {
         </div>
         <div className="form-group form-check">
           <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" for="exampleCheck1">Check me out</label>
+          <label htmlFor="exampleCheck1" className="form-check-label">
+            Check me out
+          </label>
         </div>
-        <br></br>
+        <br />
         <div className="center">
-          <Button variant="info" className="btn btn-info text-white fw-bold" onClick={handleLogin} >Login</Button>
+          <Button variant="info" className="btn btn-info text-white fw-bold" onClick={handleLogin}>
+            Login
+          </Button>
         </div>
       </div>
     </form>
-
   );
-
+  
   return (
     <div className="app">
       <div className="login">
@@ -106,6 +111,7 @@ const handleLogin = async () => {
       </div>
     </div>
   );
+  
 }
 
 export default App;

@@ -37,8 +37,15 @@ function Account() {
         .then((response) => { // response is accepted
           setBalance(response.data.balance); // Balance is taken from user emaiil
         })
-        .catch((error) => { // Error block
-          console.error('Error fetching user balance:', error);
+        .catch((error) => { // Error block. Different responses in place to distinguish between network and server errors.
+          if (error.response) {
+            console.error('Error retrieving user balance from server, server may be offline', error);
+          } else if (error.request) {
+            console.error('No response received from server', error);
+          } else {
+            console.error('Error fetching user balance:', error);
+          }
+         
         });
     }
   }, [user]); // User object used as dependency
