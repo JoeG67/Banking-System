@@ -9,7 +9,6 @@ import Contact from './Contact'
 function App() {
 
   return (
-
     <BrowserRouter>  {/*BrowserRouter provides the routing infrastructure for your application */}
       <Routes>  {/*Router component used to define the routing configuration for your application */}
        {/* Route is used to define individual routes within the <Routes> component, specifies the path (URL) for which the route should be active*/}

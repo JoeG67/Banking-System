@@ -62,9 +62,15 @@ function Account() {
         setBalance(response.data.balance); // Updated balance value is taken from database
         setShowInc(true); // Modal is displayed once increment is successful
       })
-      .catch((error) => { // Error block
-        console.error('Error depositing:', error);
-        toast("An error occurred while depositing funds.");
+      .catch((error) => { // Error block. Different responses in place to distinguish between network and server errors.
+        if (error.response) {
+          console.error('Error updating user balance in server, server may be offline', error);
+        } else if (error.request) {
+          console.error('No response received from server', error);
+        } else {
+          console.error('Error updating user balance:', error);
+        }
+       
       });
   };
 
@@ -76,9 +82,15 @@ function Account() {
         setBalance(response.data.balance); // Updated balance value is taken from database
         setShowDec(true); //Modal is displayed once decrement is successful
       })
-      .catch((error) => { // Error block
-        console.error('Error withdrawing:', error);
-        toast("An error occurred while withdrawing funds.");
+      .catch((error) => { // Error block. Different responses in place to distinguish between network and server errors.
+        if (error.response) {
+          console.error('Error updating user balance in server, server may be offline', error);
+        } else if (error.request) {
+          console.error('No response received from server', error);
+        } else {
+          console.error('Error updating user balance:', error);
+        }
+       
       });
   };
 
@@ -90,9 +102,15 @@ function Account() {
         setBalance(response.data.balance); // Updated balance value is taken from database 
         setShowDec(true); //Modal is displayed once decrement is successful
       })
-      .catch((error) => { //Error block
-        console.error('Error withdrawing:', error);
-        toast("An error occurred while withdrawing funds.");
+      .catch((error) => { // Error block. Different responses in place to distinguish between network and server errors.
+        if (error.response) {
+          console.error('Error updating user balance in server, server may be offline', error);
+        } else if (error.request) {
+          console.error('No response received from server', error);
+        } else {
+          console.error('Error updating user balance:', error);
+        }
+       
       });
   };
 
@@ -109,9 +127,15 @@ function Account() {
         setPost(response.data); // Data is taken
         setLoading(false); //Loading symbol is taken out
       })
-      .catch((error) => { //Error block
-        console.error('Error fetching data:', error);
-        setLoading(false);
+      .catch((error) => { // Error block. Different responses in place to distinguish between network and server errors.
+        if (error.response) {
+          console.error('Error retrieving data from API, server may have issues', error);
+        } else if (error.request) {
+          console.error('No response received', error);
+        } else {
+          console.error('Error fetching data:', error);
+        }
+       
       });
   }, []);
 
