@@ -235,15 +235,14 @@ function Account() {
             <h2 className="fw-bolder">Daily Stock Updates</h2>
             <p className="lead mb-0">View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
           </div>
-          <div className="text-center mb-2">
+          <div className="text-center mb-2">\
+          {/* Check if lazy loading can be used to replace these sections */}
             {loading ? (
               <p>Loading...</p>
             ) : (
               <div>
-                <h4 className="fw-bolder">Stock name:</h4>
-                <p>{post.name}</p>
-                <h4 className="fw-bolder">Stock price:</h4>
-                <p>RM{post.id}</p>
+                <h4 className="fw-bolder">Stock name: <p>{post.name}</p></h4>
+                <h4 className="fw-bolder">Stock price: <p>RM{post.id}</p></h4>
               </div>
             )}
           </div>
