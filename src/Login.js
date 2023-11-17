@@ -66,30 +66,23 @@ const handleLogin = async () => {
           <label htmlFor="email">Username </label>
           <input
             type="email"
+            class="form-control"
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email"
             required
           />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
         </div>
         <div className="input-container">
           <label htmlFor="password">Password </label>
           <input
+            class="form-control"
             type="password"
             value={password}
             onChange={handlePasswordChange}
             placeholder="Enter your password"
             required
           />
-        </div>
-        <div className="form-group form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label htmlFor="exampleCheck1" className="form-check-label">
-            Check me out
-          </label>
         </div>
         <br />
         <div className="center">
@@ -105,7 +98,10 @@ const handleLogin = async () => {
     <div className="app">
       <div className="login">
         <div className="login-form">
-          <div className="title">Sign In</div>
+        <div className="text-center my-5">
+                <h1 className="display-5 fw-bolder text-black mb-1">Welcome To XYZ Bank</h1>
+              </div>
+          <div className="title fw-bolder">Sign In</div>
           {isLoggedIn ? <div>User is successfully logged in</div> : renderForm}
         </div>
       </div>
