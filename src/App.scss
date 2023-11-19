@@ -6,7 +6,6 @@
 
 // Login page
 .app {
-  font-family: sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,8 +13,8 @@
   gap: 20px;
   height: 100%;
   min-height: 100vh;
-  font-family: Verdana, sans-serif;
-  background-color: #fffff0;
+  font-family: Tahoma, sans-serif;
+  background-color: #d8edd3;
 }
 
 html {
@@ -75,14 +74,14 @@ h1 {
 }
 
 nav {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Arial, sans-serif;
   text-align: center;
   background-color: #d8edd3;
   justify-content: center;
   padding: 10px;
 
   a {
-    color: black;
+    color: white;
     text-decoration: none;
   
     &:hover {
@@ -119,12 +118,15 @@ ul {
 
 .home {
   background-color: #d8edd3;
+  font-family: 'Times New Roman', sans-serif;
 }
 .contact {
   background-color: #d8edd3;
+  font-family: 'Times New Roman', sans-serif;
 }
 .account {
   background-color: #d8edd3;
+  font-family: 'Times New Roman', sans-serif;
   //max-height: 120vh;
 }
 footer {

@@ -27,8 +27,9 @@ function Navbar() {
             <li>
             </li>
           </ul>
-          <form class="navbar-brand" role="search"><Link to="/">Logout</Link>
-          </form>
+          <button type="button" class="btn btn-danger fw-bolder">
+          <Link to="/">Logout</Link>
+          </button>
         </div>
       </div>
     </nav>
