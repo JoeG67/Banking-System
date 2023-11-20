@@ -203,13 +203,7 @@ function Account() {
                 </Button>
               </Modal.Footer>
             </Modal>
-          </div>
-        </div>
-      </section>
-
-      <section className="border bottom" id="features">
-        <div className="container px-5 my-5 px-5">
-          <div className="text-center mb-3">
+            <div className="text-center mb-3">
           <div>
               <label>Transfer: </label>
               <input type="number" className="numberInput" value={transferAmount} onChange={(e) => setTranAmountBy(e.target.value)} />
@@ -226,6 +220,7 @@ function Account() {
                 </Button>
               </Modal.Footer>
             </Modal>
+          </div>
           </div>
         </div>
       </section>

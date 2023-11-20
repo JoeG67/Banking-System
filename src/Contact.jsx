@@ -30,11 +30,7 @@ function Contact() {
             <section class="border-bottom" id="features">
                 <div class="container px-4 my-4">
                     <div class="row gx-5">
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                            <h2 class="h4 fw-bolder">Contact Us</h2>
-                            <p>Feel free to get in touch with us if you have any questions, concerns, or need assistance with your banking needs. Our dedicated team is here to help you.</p>
-                        </div>
+                    
                         <div class="col-lg-4 mb-5 mb-lg-0">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
                             <h2 class="h4 fw-bolder">Customer Support</h2>
@@ -51,31 +47,6 @@ function Contact() {
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
                             <h2 class="h4 fw-bolder">Feedback</h2>
                             <p>We value your feedback and are constantly striving to improve our services. If you have any suggestions or feedback to share, please feel free to do so. Your input helps us serve you better.</p>
-                        </div>
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                            <h2 class="h4 fw-bolder">Report a Problem</h2>
-                            <p>If you encounter any technical issues or security concerns while using our banking app, please report them to our technical support team immediately. Your security is our priority.</p>
-                        </div>
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                            <h2 class="h4 fw-bolder">Placeholder</h2>
-                            <p>LoremIpsum</p>
-                        </div>
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                            <h2 class="h4 fw-bolder">Placeholder</h2>
-                            <p>LoremIpsum</p>
-                        </div>
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                            <h2 class="h4 fw-bolder">Placeholder</h2>
-                            <p>LoremIpsum</p>
-                        </div>
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                            <h2 class="h4 fw-bolder">Placeholder</h2>
-                            <p>LoremIpsum</p>
                         </div>
             <iframe 
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15935.348102668393!2d101.6874214!3d3.137711!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49c71f9dfef7%3A0x7a53ea764838b90b!2sThe%20National%20Museum%20of%20Malaysia!5e0!3m2!1sen!2smy!4v1699771031966!5m2!1sen!2smy" 
