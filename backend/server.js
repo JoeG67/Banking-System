@@ -110,6 +110,7 @@ app.post('/api/transfer', (req, res) => {
   });
 });
 
+//API endpoint below will be used to store data to be used for bank statement page
 
 
 // Express.js method that starts the server and listens on a specified port for incoming HTTP requests
