@@ -5,6 +5,7 @@ import Login from './Login';
 import Home from './Home'
 import Account from './Account'
 import Contact from './Contact'
+import Statement from './Statement'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/account" element={<Account />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/statement" element={<Statement />} />
       </Routes>
     </BrowserRouter>
   );

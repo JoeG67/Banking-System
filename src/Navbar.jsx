@@ -25,6 +25,7 @@ function Navbar() {
               <Link to="/contact">Contact</Link>
             </li>
             <li>
+            <Link to="/statement">Statement</Link>
             </li>
           </ul>
           <button type="button" class="btn btn-danger fw-bolder">
