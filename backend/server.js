@@ -111,7 +111,25 @@ app.post('/api/transfer', (req, res) => {
 });
 
 //API endpoint below will be used to store data to be used for bank statement page
+app.post('/api/statement', (req, res) => { // Name of endpoint + request and response objects
+  const { email, password } = req.body; // Extract the email and password from the request body
 
+  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
+    return res.status(400).json({ error: 'Email and password are required in the request body' });
+  }
+
+  //Database is checked for the corresponding email and password values
+  db.get('SELECT * FROM statement WHERE email = ? AND password = ?', [email, password], (err, row) => {
+    if (err) { // Error handling block for if any error occurs while query is executed
+      console.error('Error querying the database:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    if (!row) { // Error message returned for if no row is returned from the query
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(row); // Response is returned with corresponding data
+  });
+});
 
 // Express.js method that starts the server and listens on a specified port for incoming HTTP requests
 app.listen(port, () => { //Takes port as the argument 

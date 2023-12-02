@@ -5,6 +5,7 @@ import { useUser } from "./UserContext";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.scss";
 
+
 function Statement() {
     const {user} = useUser();
     return (
@@ -21,6 +22,14 @@ function Statement() {
           </div>
         </div>
       </header>
+      <section className="border bottom" id="features">
+        <div className="container px-5 my-5 px-5">
+          <div className="text-center mb-5">
+            <h2 className="fw-bolder">Statement Overview</h2>
+            <p className="lead mb-0">View a list of all transactions made within your account history</p>
+          </div>
+        </div>
+      </section>
             <Footer />
        </div> 
     );
