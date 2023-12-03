@@ -37,35 +37,46 @@ app.post('/api/users', (req, res) => { // Name of endpoint + request and respons
 app.post('/api/deposit', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
-  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
-    return res.status(400).json({ error: 'Email and password are required in the request body' });
+  if (!email || !balance) {
+    return res.status(400).json({ error: 'Email and balance are required in the request body' });
   }
-  // Update the user's balance in the database (use SQL UPDATE statement) adds value to balance
+
+  // Update the user's balance in the database (use SQL UPDATE statement)
   db.run('UPDATE users SET balance = balance + ? WHERE email = ?', [balance, email], (err) => {
-    if (err) { // Error handling block
+    if (err) {
       console.error('Error updating balance:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
 
-    // Fetch the updated balance from the database and send it in the response
-    db.get('SELECT balance FROM users WHERE email = ?', email, (err, row) => {
-      if (err) {
-        console.error('Error fetching updated balance:', err);
-        return res.status(500).json({ error: 'Internal server error' });
-      }
-      // Updated user balance is returned and sent to account page
-      res.json({ balance: row.balance });
-    });
+    // Insert a new record into the 'statement' table
+    const depositTransaction = 'deposit';
+    const transactionDate = new Date().toISOString();
+
+    db.run('INSERT INTO statement(transaction_type, transaction_amount, transaction_date, email) VALUES (?, ?, ?, ?)',
+      [depositTransaction, balance, transactionDate, email], (err) => {
+        if (err) {
+          console.error('Error inserting into statement table:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+        }
+
+        // Fetch the updated balance from the database and send it in the response
+        db.get('SELECT balance FROM users WHERE email = ?', email, (err, row) => {
+          if (err) {
+            console.error('Error fetching updated balance:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+          }
+
+          res.json({ balance: row.balance });
+        });
+      });
   });
 });
+
 
 
 app.post('/api/withdraw', (req, res) => {
   const { email, balance } = req.body; // Extract email and balance from the request body
 
-  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
-    return res.status(400).json({ error: 'Email and password are required in the request body' });
-  }
   // Update the user's balance in the database (use SQL UPDATE statement) subtracts balance
   db.run('UPDATE users SET balance = balance - ? WHERE email = ?', [balance, email], (err) => {
     if (err) { // Error handling block
@@ -86,11 +97,8 @@ app.post('/api/withdraw', (req, res) => {
 });
 
 app.post('/api/transfer', (req, res) => {
-  const { email, balance } = req.body; // Extract email and balance from the request body
+  const { email, balance} = req.body; // Extract email and balance from the request body
 
-  if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
-    return res.status(400).json({ error: 'Email and password are required in the request body' });
-  }
   // Update the user's balance in the database (use SQL UPDATE statement) tramsfers value from balance
   db.run('UPDATE users SET balance = balance - ? WHERE email = ?', [balance, email], (err) => {
     if (err) { // Error handling block

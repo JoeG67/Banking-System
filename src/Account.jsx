@@ -207,7 +207,7 @@ function Account() {
           <div>
               <label>Transfer: </label>
               <input type="number" className="numberInput" value={transferAmount} onChange={(e) => setTranAmountBy(e.target.value)} />
-              <Button variant="info" onClick={transfer}>Decrement</Button>
+              <Button variant="info" onClick={transfer}>Transfer</Button>
             </div>
             <Modal show={showDec} onHide={handleCloseDec}>
               <Modal.Header closeButton>
