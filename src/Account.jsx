@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { toast } from 'react-toastify';
 import { Helmet } from "react-helmet";
 import Footer from './Footer';
 import Modal from 'react-bootstrap/Modal';
@@ -121,7 +120,6 @@ function Account() {
 
   useEffect(() => {
     const apiUrl = 'https://jsonplaceholder.typicode.com/comments/1'; // API url in which data is taken from
-
     axios.get(apiUrl)
       .then((response) => { // On successful response
         setPost(response.data); // Data is taken
@@ -135,7 +133,6 @@ function Account() {
         } else {
           console.error('Error fetching data:', error);
         }
-       
       });
   }, []);
 
