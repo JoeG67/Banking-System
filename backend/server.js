@@ -35,7 +35,7 @@ app.post('/api/users', (req, res) => { // Name of endpoint + request and respons
 });
 
 app.post('/api/deposit', (req, res) => {
-  const { email, balance } = req.body; // Extract email and balance from the request body
+  const { email, balance } = req.body;
 
   if (!email || !balance) {
     return res.status(400).json({ error: 'Email and balance are required in the request body' });
@@ -71,6 +71,7 @@ app.post('/api/deposit', (req, res) => {
       });
   });
 });
+
 
 
 
