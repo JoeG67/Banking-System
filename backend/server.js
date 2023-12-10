@@ -17,6 +17,7 @@ const db = new sqlite3.Database('banksystem.db'); // Created a db object which h
 app.post('/api/users', (req, res) => { // Name of endpoint + request and response objects
   const { email, password } = req.body; // Extract the email and password from the request body
 
+
   if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
     return res.status(400).json({ error: 'Email and password are required in the request body' });
   }
@@ -123,6 +124,7 @@ app.post('/api/transfer', (req, res) => {
 app.post('/api/statement', (req, res) => { // Name of endpoint + request and response objects
   const { email, password } = req.body; // Extract the email and password from the request body
 
+
   if (!email || !password) { // If loop to check and return an error if the email and password are not taken/present
     return res.status(400).json({ error: 'Email and password are required in the request body' });
   }
@@ -136,7 +138,7 @@ app.post('/api/statement', (req, res) => { // Name of endpoint + request and res
     if (!row) { // Error message returned for if no row is returned from the query
       return res.status(404).json({ error: 'User not found' });
     }
-    res.json(row); // Response is returned with corresponding data
+   res.json({ data: row }) // Response is returned with corresponding data
   });
 });
 
