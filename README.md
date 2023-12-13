@@ -5,7 +5,7 @@ This banking system was bootstrapped with [Create React App](https://github.com/
 ## Reason for development
 
 ### Skill Development:
-I'ce created this project to enhance my web development skills, particularly in React and other backend technologies. Project development is a hands-on way to learn and grow as a developer.
+I created this project to enhance my web development skills, particularly in React and other backend technologies. Project development is a hands-on way to learn and grow as a developer.
 
 ### Portfolio Enhancement:
 I want to showcase my abilities to potential employers or clients. Completing this project will be a valuable addition to my portfolio, demonstrating my expertise.
