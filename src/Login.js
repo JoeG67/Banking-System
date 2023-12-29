@@ -66,7 +66,7 @@ const handleLogin = async () => {
           <label htmlFor="email">Username </label>
           <input
             type="email"
-            class="form-control"
+            class="border border-dark form-control"
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email"
@@ -76,7 +76,7 @@ const handleLogin = async () => {
         <div className="input-container">
           <label htmlFor="password">Password </label>
           <input
-            class="form-control"
+            class="border border-dark form-control"
             type="password"
             value={password}
             onChange={handlePasswordChange}
@@ -86,7 +86,7 @@ const handleLogin = async () => {
         </div>
         <br />
         <div className="center">
-          <Button variant="info" className="btn btn-info text-white fw-bold" onClick={handleLogin}>
+          <Button variant="info" className="btn btn-info border border-dark text-white fw-bold" onClick={handleLogin}>
             Login
           </Button>
         </div>
