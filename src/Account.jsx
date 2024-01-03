@@ -142,12 +142,12 @@ function Account() {
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
       </Helmet>
       <Navbar />
-      <header className="bg-dark py-5">
+      <header class="py-3 mt-0">
         <div className="container px-5">
           <div className="row gx-5 justify-content-center">
             <div className="col-lg-6">
               <div className="text-center my-5">
-                <h1 className="display-5 fw-bolder text-white mb-1">Account Details</h1>
+                <h1 className="display-5 fw-bolder mb-1">Account Details</h1>
               </div>
             </div>
           </div>

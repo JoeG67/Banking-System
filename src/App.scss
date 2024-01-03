@@ -81,9 +81,10 @@ h1 {
 nav {
   font-family: Arial, sans-serif;
   text-align: center;
-  // background: linear-gradient(0deg, rgba(216,237,211,1) 0%, rgba(216,237,211,1) 21%, rgba(0,212,255,1) 100%);
+  background: rgba(0,212,255,1);
+  background: linear-gradient(0deg, rgba(0,212,255,1) 0%, rgba(45,110,253,1) 100%); 
   justify-content: center;
-  padding: 10px;
+  padding: 1rem !important; 
 
   a {
     color: white;
@@ -94,6 +95,7 @@ nav {
     }
   }
 }
+
 
 li {
   display: inline;
@@ -140,10 +142,10 @@ ul {
   font-family: 'Times New Roman', sans-serif;
 }
 footer {
-  background-color: black;
-  color: white;
+  background:rgba(216,237,211,1);
+  background: radial-gradient(circle, rgba(216,237,211,1) 0%, rgba(86,110,139,1) 100%); 
+  color: #51555c;
   padding: 20px;
-  border-top: 1px solid #d8edd3;
   text-align: center;
 }
 

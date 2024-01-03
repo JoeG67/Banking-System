@@ -14,12 +14,12 @@ function Contact() {
                 <meta name="viewport" title="Contact" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
             </Helmet>
 
-            <header class="bg-dark py-3 mt-0">
+            <header class="py-3 mt-0">
                 <div class="container px-5">
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-6">
                             <div class="text-center my-5">
-                                <h1 class="display-5 fw-bolder text-white mb-1">Contact Details</h1>
+                                <h1 class="display-5 fw-bolder mb-1">Contact Details</h1>
                             </div>
                         </div>
                     </div>
