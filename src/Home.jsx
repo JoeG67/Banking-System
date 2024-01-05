@@ -18,7 +18,7 @@ function Home() {
 				<div class="container px-5">
 					<div class="row gx-5 justify-content-center">
 						<div class="col-lg-6">
-							<div class="text-center my-5">
+							<div class="text-center mt-5">
 								<h1 class="display-5 fw-bolder mb-1">Welcome to XYZ Bank</h1>
 							</div>
 						</div>
@@ -29,19 +29,19 @@ function Home() {
 			<section class="border-bottom" id="features">
 				<div class="container px-4 my-4">
 					<div class="row gx-5">
-						<div class="col-lg-4 mb-5 mb-lg-0">
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
 							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-							<h2 class="h4 fw-bolder">Secure Transactions</h2>
+							<h2 class="h4 fw-bolder">1. Secure Transactions</h2>
 							<p>Your security is our top priority. Rest assured that your transactions are protected by advanced encryption and security measures.</p>
 						</div>
-						<div class="col-lg-4 mb-5 mb-lg-0">
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
 							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-							<h2 class="h4 fw-bolder">Easy Transfers</h2>
+							<h2 class="h4 fw-bolder">2. Easy Transfers</h2>
 							<p>Transfer funds between your accounts or send money to family and friends with just a few clicks. It's quick, convenient, and hassle-free.</p>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
 							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-							<h2 class="h4 fw-bolder">Stay Informed</h2>
+							<h2 class="h4 fw-bolder">3. Stay Informed</h2>
 							<p>Stay up to date with the latest financial news, tips, and resources. Explore our blog and educational materials to enhance your financial knowledge.</p>
 						</div>
 					</div>
