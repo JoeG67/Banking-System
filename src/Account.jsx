@@ -153,21 +153,17 @@ function Account() {
           </div>
         </div>
       </header>
-
-      <section className="border bottom" id="features">
-        <div className="container px-5 my-5 px-5">
-          <div className="text-center mb-5">
-            <h2 className="fw-bolder">Account Overview</h2>
-            <p className="lead mb-0">View all your accounts at a glance, including checking, savings, and investments. Stay informed about your financial health.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-3 border-bottom">
-        <div className="container px-5 my-5 px-5">
-          <div className="text-center mb-5">
-            <h2 className="fw-bolder">Balance: RM{balance}</h2>
-            <h2 className="fw-bolder">Available for withdrawal: RM{balance - 20}</h2>
+      <section class="border-bottom text-center" id="features">
+				<div class="container d-flex justify-content-center ps-5">
+					<div class="row gx-5 justify-content-center">
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+              <h2 className="fw-bolder">Current Balance: RM{balance}</h2>
+						</div>
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+              <h2 className="fw-bolder">Available Balance: RM{balance - 20}</h2>
+						</div>
             <div>
               <label>Deposit: </label>
               <input type="number" className="numberInput" value={incrementBy} onChange={(e) => setIncrementBy(e.target.value)} />
@@ -218,9 +214,10 @@ function Account() {
               </Modal.Footer>
             </Modal>
           </div>
-          </div>
-        </div>
-      </section>
+					</div>
+				</div>
+			</section>
+     
       <section className="border bottom" id="features">
         <div className="container px-5 my-5 px-5">
           <div className="text-center mb-3">

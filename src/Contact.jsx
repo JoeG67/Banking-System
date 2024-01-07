@@ -25,33 +25,37 @@ function Contact() {
                     </div>
                 </div>
             </header>
-
-            {/* Section below displays basic headlines and descriptions for the contact page */}
             <section class="border-bottom" id="features">
-                <div class="container px-4 my-4">
-                    <div class="row gx-5">
-                    
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+				<div class="container px-4 my-4">
+					<div class="row gx-5">
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
                             <h2 class="h4 fw-bolder">Customer Support</h2>
                             <p>Our customer support team is available 24/7 to assist you with any inquiries or issues you may have. Whether it's a simple question or a complex financial matter, we're just a call or message away.</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+						</div>
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
                             <h2 class="h4 fw-bolder">Contact Information</h2>
                             <p>Customer Service Hotline: <Link href="(123) 456-7890">(123) 456-7890</Link></p>   {/*Link components are used for the phone number and emails*/}
                             <p> Email: <Link href="support@xyzbank.com">support@xyzbank.com</Link></p>
                             <p>Visit Us: 123 Main Street, City, State, ZIP</p>
-                        </div>
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+						</div>
+						<div class="col-lg-4 mb-5 mb-lg-0 bg-white border border-secondary">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
                             <h2 class="h4 fw-bolder">Feedback</h2>
                             <p>We value your feedback and are constantly striving to improve our services. If you have any suggestions or feedback to share, please feel free to do so. Your input helps us serve you better.</p>
-                        </div>
+						</div>
+					</div>
+				</div>
+			</section>
+            {/* Section below displays basic headlines and descriptions for the contact page */}
+            <section class="border-bottom mt-5" id="features">
+                <div class="container px-4 my-4">
+                    <div class="row gx-5">
             <iframe 
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15935.348102668393!2d101.6874214!3d3.137711!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49c71f9dfef7%3A0x7a53ea764838b90b!2sThe%20National%20Museum%20of%20Malaysia!5e0!3m2!1sen!2smy!4v1699771031966!5m2!1sen!2smy" 
-            width="600" 
-            height="450"  
+            width="700" 
+            height="500"  
             style={{ border: 0 }} 
             allowfullscreen="" 
             loading="lazy" 
