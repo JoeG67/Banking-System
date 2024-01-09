@@ -1,8 +1,7 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import "./App.scss";
-import { Container } from 'react-bootstrap';
+
 
 function Navbar() {
   return (
